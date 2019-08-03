@@ -76,3 +76,11 @@ def add_pet_to_customer(customers_array, pet_to_add)
 customers_array[:pets].push(pet_to_add)
 p customers_array[:pets].count
 end
+
+def customer_can_afford_pet(customers_array, pet_to_buy)
+  if customers_array[:cash] >= pet_to_buy[:price]
+    return true
+  else
+    return false 
+  end
+end
