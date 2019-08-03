@@ -36,7 +36,7 @@ def find_pet_by_name(pet_shop_hash, pet_to_find)
 pet_by_name = {}
   for pet in pet_shop_hash[:pets]
     if pet[:name] == pet_to_find
-      pet_by_name[:name] = pet_to_find
+      pet_by_name = pet
     end
   end
   if pet_by_name.empty?
@@ -81,6 +81,24 @@ def customer_can_afford_pet(customers_array, pet_to_buy)
   if customers_array[:cash] >= pet_to_buy[:price]
     return true
   else
-    return false 
+    return false
   end
+end
+
+def sell_pet_to_customer(pet_shop_hash, pet_to_sell, customer_hash)
+
+
+  if pet_to_sell == nil
+    return
+  elsif customer_hash[:cash] < pet_to_sell[:price]
+    return
+  else
+    pet_price = pet_to_sell[:price]
+    
+    customer_hash[:pets].push(pet_to_sell)
+    pet_shop_hash[:admin][:pets_sold] += 1
+    customer_hash[:cash] -= pet_price
+    pet_shop_hash[:admin][:total_cash] += pet_price
+end
+
 end
